@@ -97,7 +97,8 @@ export function hasStaticModifier(classMember: ts.ClassElement) {
  */
 export function isPropTypesMember(classMember: ts.ClassElement, sourceFile: ts.SourceFile) {
     try {
-        return classMember.name !== undefined && classMember.name.getFullText(sourceFile) !== 'propTypes';
+        const name = classMember.name !== undefined && classMember.name.getFullText(sourceFile).trim();
+        return name === 'propTypes';
     } catch (e) {
         return false;
     }
